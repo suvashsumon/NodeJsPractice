@@ -1,20 +1,30 @@
 const express = require("express");
 const body_parser = require("body-parser");
+const mobiles = require("../models/mobiles");
 
 const mobile = express.Router();
 mobile.use(body_parser.json());
 
 mobile.get("/", (req, res)=>{
-    res.send("all the mobile are shown.");
+    //res.send("all the mobile are shown.");
+    mobiles.find({}).then((mobiles)=>{
+        res.json(mobiles);
+    })
 });
 
 mobile.get("/:id", (req, res)=>{
-    res.send("Mobile id "+req.params.id+" is showing.");
+    //res.send("Mobile id "+req.params.id+" is showing.");
+    mobiles.findById(req.params.id).then((mobile)=>{
+        res.json(mobile);
+    });
 });
 
 mobile.post("/", (req, res)=>{
     //res.send("New mobile item added");
-    res.json(req.body);
+    //res.json(req.body);
+    mobiles.create(req.body).then((resp)=>{
+        res.send("New mobile added");
+    })
 });
 
 mobile.post("/:id", (req, res)=>{
@@ -25,7 +35,7 @@ mobile.delete("/", (req, res)=>{
     res.send("All mobile items are deleted");
 });
 
-mobile.post("/:id", (req, res)=>{
+mobile.delete("/:id", (req, res)=>{
     res.send("Mobile item id "+req.params.id+" is deleted.");
 });
 
