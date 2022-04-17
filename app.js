@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 const mobileRouter = require("./routers/mobile.router")
 const userRouter = require("./routers/users.router")
 
-const port = 3000;
+const port = process.env.PORT;
 const app = express();
 
 // database connection start here
