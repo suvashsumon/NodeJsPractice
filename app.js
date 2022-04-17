@@ -8,7 +8,7 @@ const port = 3000;
 const app = express();
 
 // database connection start here
-const url = "mongodb://127.0.0.1:27017/exam_practice";
+const url = "mongodb+srv://suvashkumar:MTHSlowsd3scc6d8@cluster0.dzm1b.mongodb.net/testdb?retryWrites=true&w=majority";
 const conn = mongoose.connect(url);
 conn.then((db)=>{
     console.log("Successfully connected to database server.");
@@ -18,8 +18,11 @@ conn.then((db)=>{
 // database connection end here
 
 app.get("/", (req, res)=>{
-    res.send("Application Home Page");
+    res.render("home");
 });
+
+app.set("view engine", "ejs");
+
 app.use("/mobiles", mobileRouter);
 app.use("/users", userRouter);
 

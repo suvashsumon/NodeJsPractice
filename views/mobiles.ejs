@@ -1,0 +1,64 @@
+<%- include("header") %>
+    <div class="container">
+        <form method="post" action="/mobiles">
+            <div class="form-row">
+                <div class="form-group  col-md-6">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Name" name="name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleInputEmail1">Description</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Description" name="description">
+                </div>
+            </div>
+            <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="exampleFormControlSelect1">Available</label>
+                <select class="form-control" id="exampleFormControlSelect1" name="isavailable">
+                    <option value="true">YES</option>
+                    <option value="false">NO</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="exampleInputEmail1">Price</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Price" name="price">
+            </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <h1>Mobiles</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Available</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% mobiles.forEach((mobile)=>{ %>
+                    <tr>
+                        <td>
+                            <%= mobile.name %>
+                        </td>
+                        <td>
+                            <%= mobile.description %>
+                        </td>
+                        <% if(mobile.isavilable==0) { %>
+                            <td>NO</td>
+                            <% } else { %>
+                                <td>YES</td>
+                                <% } %>
+                                    <td>
+                                        <%= mobile.price %>
+                                    </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <%- include("footer") %>

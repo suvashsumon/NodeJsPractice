@@ -4,11 +4,13 @@ const mobiles = require("../models/mobiles");
 
 const mobile = express.Router();
 mobile.use(body_parser.json());
+mobile.use(body_parser.urlencoded({extended:true}));
 
 mobile.get("/", (req, res)=>{
     //res.send("all the mobile are shown.");
     mobiles.find({}).then((mobiles)=>{
-        res.json(mobiles);
+        //res.json(mobiles);
+        res.render("mobiles", {mobiles});
     })
 });
 
@@ -23,7 +25,7 @@ mobile.post("/", (req, res)=>{
     //res.send("New mobile item added");
     //res.json(req.body);
     mobiles.create(req.body).then((resp)=>{
-        res.send("New mobile added");
+        res.redirect("/mobiles");
     })
 });
 

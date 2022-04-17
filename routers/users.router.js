@@ -4,19 +4,21 @@ const users = require("../models/users");
 
 const userRouter = express.Router();
 userRouter.use(body_parser.json());
+userRouter.use(body_parser.urlencoded({extended:true}));
 
 userRouter.route("/")
     .get((req, res) => {
         // res.send("Showing all users profile.");
         users.find({}).then((users)=>{
-            res.json(users);
+            //res.json(users);
+            res.render('users', {users});
         })
     })
     .post((req, res) => {
         //res.send("Creating new user.");
         //res.json(req.body);
         users.create(req.body).then((resp)=>{
-            res.send("New user added.");
+            res.redirect("/users");
         })
     })
     .put((req, res) => {
