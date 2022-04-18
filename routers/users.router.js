@@ -19,4 +19,7 @@ userRouter.route("/:id")
     .put(updateUser)
     .delete(deleteUser);
 
+userRouter.route("/delete/:id")
+    .get(deleteUser);
+
 module.exports = userRouter;

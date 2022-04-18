@@ -21,5 +21,11 @@ exports.createMobile = (req, res)=>{
     //res.json(req.body);
     mobiles.create(req.body).then((resp)=>{
         res.redirect("/mobiles");
-    })
+    });
 };
+
+exports.deleteMobile = (req, res)=>{
+    mobiles.findByIdAndRemove(req.params.id).then((resp)=>{
+        res.redirect("/mobiles");
+    })
+}

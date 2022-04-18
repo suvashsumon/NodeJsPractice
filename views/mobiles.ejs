@@ -1,5 +1,6 @@
 <%- include("header") %>
     <div class="container">
+        <%- include("navigation") %>
         <form method="post" action="/mobiles">
             <div class="form-row">
                 <div class="form-group  col-md-6">
@@ -14,18 +15,18 @@
                 </div>
             </div>
             <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="exampleFormControlSelect1">Available</label>
-                <select class="form-control" id="exampleFormControlSelect1" name="isavailable">
-                    <option value="true">YES</option>
-                    <option value="false">NO</option>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="exampleInputEmail1">Price</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Price" name="price">
-            </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleFormControlSelect1">Available</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="isavailable">
+                        <option value="true">YES</option>
+                        <option value="false">NO</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleInputEmail1">Price</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        placeholder="Price" name="price">
+                </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -37,6 +38,7 @@
                     <th>Description</th>
                     <th>Available</th>
                     <th>Price</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -50,12 +52,11 @@
                         </td>
                         <% if(mobile.isavilable==0) { %>
                             <td>NO</td>
-                            <% } else { %>
-                                <td>YES</td>
-                                <% } %>
-                                    <td>
-                                        <%= mobile.price %>
-                                    </td>
+                        <% } else { %>
+                            <td>YES</td>
+                        <% } %>
+                        <td><%= mobile.price %></td>
+                        <td><a href="mobiles/delete/<%= mobile._id %>">Delete</a></td>
                     </tr>
                     <% }) %>
             </tbody>

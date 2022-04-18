@@ -44,5 +44,8 @@ exports.updateUser = (req, res) => {
 };
 
 exports.deleteUser = (req, res) => {
-    res.send("User " + req.params.id + " is deleted.");
+    //res.send("User " + req.params.id + " is deleted.");
+    users.findByIdAndRemove(req.params.id).then((resp)=>{
+        res.redirect("/users");
+    })
 };
