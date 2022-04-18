@@ -9,8 +9,8 @@ const port = process.env.PORT;
 const app = express();
 
 // database connection start here
-const url = "mongodb+srv://suvashkumar:MTHSlowsd3scc6d8@cluster0.dzm1b.mongodb.net/testdb?retryWrites=true&w=majority";
-const conn = mongoose.connect(url);
+//const url = "mongodb+srv://suvashkumar:MTHSlowsd3scc6d8@cluster0.dzm1b.mongodb.net/testdb?retryWrites=true&w=majority";
+const conn = mongoose.connect(process.env.DATABASE_URL);
 conn.then((db)=>{
     console.log("Successfully connected to database server.");
 }, (err)=>{
